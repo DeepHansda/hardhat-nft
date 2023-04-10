@@ -6,8 +6,14 @@ const imagesPath = "./assests/imgs";
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const metaTemplate = {
     name: "",
+    description: "",
     image: "",
-    des: "",
+    attributes: [
+      {
+        type: "God",
+        power: 1000000,
+      },
+    ],
   };
   try {
     const { deploy, log } = deployments;
@@ -19,7 +25,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     if (imgResponse) {
       const tokenUriMetaData = { ...metaTemplate };
       tokenUriMetaData.name = img.replace(".png" || ".jpg", "");
-      tokenUriMetaData.des = `By order of ${tokenUriMetaData.name}`;
+      tokenUriMetaData.description = `By order of ${tokenUriMetaData.name}`;
       tokenUriMetaData.image = `ipfs://${imgResponse.IpfsHash}`;
 
       const metaResponse = await uploadMetaData(tokenUriMetaData);
