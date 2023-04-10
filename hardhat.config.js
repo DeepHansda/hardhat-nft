@@ -4,9 +4,10 @@ require("hardhat-deploy");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const rpcURL = process.env.RPC_URL || "";
+const sepoliaRpcURL = process.env.SEPOLIA_RPC_URL || "";
+const goerliRpcURL = process.env.GOERLI_RPC_URL || "";
 const privateKey = process.env.PRIVATE_KEY || "";
-const etherscanKey = process.env.ETHERSCAN_KEY;
+const etherscanKey = process.env.ETHERSCAN_KEY || "";
 
 module.exports = {
   defaultNetwork: "hardhat",
@@ -15,8 +16,14 @@ module.exports = {
       chainId: 31337,
     },
     sepolia: {
-      url: rpcURL,
+      url: sepoliaRpcURL,
       chainId: 11155111,
+      accounts: [privateKey],
+      blockConfirmations: 6,
+    },
+    goerli: {
+      url: goerliRpcURL,
+      chainId: 5,
       accounts: [privateKey],
       blockConfirmations: 6,
     },

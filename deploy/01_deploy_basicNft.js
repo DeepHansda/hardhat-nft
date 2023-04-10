@@ -18,6 +18,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   try {
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
+    const chainId = network.config.chainId;
 
     const { result: imgResponse, img } = await uploadImages(imagesPath);
     let tokenUri = "";
